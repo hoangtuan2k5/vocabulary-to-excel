@@ -32,7 +32,7 @@ document.getElementById('exportButton').addEventListener('click', function() {
         // Đọc file Excel hiện có
         const reader = new FileReader();
         reader.onload = function(event) {
-            const wb = XLSX.read(event.target.result, { type: 'binary' });
+            const wb = XLSX.read(new Uint8Array(event.target.result), { type: 'array' });
             let ws = wb.Sheets[wb.SheetNames[0]];
 
             // Đọc dữ liệu từ sheet hiện tại
@@ -42,20 +42,21 @@ document.getElementById('exportButton').addEventListener('click', function() {
             // Tạo sheet mới với dữ liệu kết hợp
             ws = XLSX.utils.json_to_sheet(newData);
 
+            // Đặt chiều rộng cột
+            ws['!cols'] = [{ wpx: 200 }, { wpx: 400 }]; // Điều chỉnh chiều rộng cột
+
             // Ghi vào file mới
             XLSX.utils.book_append_sheet(wb, ws, sheetName);
             XLSX.writeFile(wb, fileName);
         };
-        reader.readAsBinaryString(fileInput);
+        reader.readAsArrayBuffer(fileInput);
     } else {
         // Tạo workbook và worksheet mới
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.json_to_sheet(data);
 
         // Đặt tiêu đề cho cột
-        ws['!cols'] = [{ wpx: 300 }, { wpx: 600 }]; // Điều chỉnh chiều rộng cột
-        ws['A1'] = { v: 'Term', t: 's' }; // Tiêu đề cột Thuật ngữ
-        ws['B1'] = { v: 'Definition', t: 's' }; // Tiêu đề cột Định nghĩa
+        ws['!cols'] = [{ wpx: 150 }, { wpx: 555 }]; // Điều chỉnh chiều rộng cột
 
         XLSX.utils.book_append_sheet(wb, ws, sheetName);
 
