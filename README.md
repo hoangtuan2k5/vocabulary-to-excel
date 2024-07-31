@@ -1,0 +1,2 @@
+Because I don't like having to write too many notes in my notebook, or more accurately, because I'm lazy about taking notes and to ensure that my vocabulary is not lost, I've created an application to transfer vocabulary from Quizlet and other flashcard apps to an Excel file for easy storage on OneDrive.
+- HCNTuan 31/07/2024
