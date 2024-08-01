@@ -33,20 +33,17 @@ document.getElementById('exportButton').addEventListener('click', function() {
         const reader = new FileReader();
         reader.onload = function(event) {
             const wb = XLSX.read(new Uint8Array(event.target.result), { type: 'array' });
-            let ws = wb.Sheets[wb.SheetNames[0]];
 
-            // Đọc dữ liệu từ sheet hiện tại
-            const existingData = XLSX.utils.sheet_to_json(ws);
-            const newData = existingData.concat(data);
-
-            // Tạo sheet mới với dữ liệu kết hợp
-            ws = XLSX.utils.json_to_sheet(newData);
+            // Tạo sheet mới với dữ liệu mới
+            const ws = XLSX.utils.json_to_sheet(data);
 
             // Đặt chiều rộng cột
             ws['!cols'] = [{ wpx: 200 }, { wpx: 400 }]; // Điều chỉnh chiều rộng cột
 
-            // Ghi vào file mới
+            // Thêm sheet mới vào workbook
             XLSX.utils.book_append_sheet(wb, ws, sheetName);
+
+            // Ghi vào file mới
             XLSX.writeFile(wb, fileName);
         };
         reader.readAsArrayBuffer(fileInput);
