@@ -1,45 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary Exporter</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <h1>Vocabulary Exporter</h1>
-        <label for="inputText">Enter your text:</label>
-        <textarea id="inputText" placeholder="Enter your text here..."></textarea>
 
-        <label for="termSeparator">Term Separator:</label>
-        <input type="text" id="termSeparator" value=":" />
+        <div class="form-group">
+            <label for="inputText">Enter your text:</label>
+            <textarea id="inputText" placeholder="Enter your vocabulary pairs here..."></textarea>
+        </div>
 
-        <label for="pairSeparator">Pair Separator:</label>
-        <input type="text" id="pairSeparator" value="\n" />
+        <div class="form-group">
+            <label for="termSeparator">Term Separator:</label>
+            <input type="text" id="termSeparator" value=":" />
+        </div>
 
-        <label for="fileName">File Name:</label>
-        <input type="text" id="fileName" value="vocabulary.xlsx" />
+        <div class="form-group">
+            <label for="pairSeparator">Pair Separator:</label>
+            <input type="text" id="pairSeparator" value="\n" />
+        </div>
 
-        <label for="sheetName">Sheet Name:</label>
-        <input type="text" id="sheetName" value="Vocabulary" />
+        <div class="form-group">
+            <label for="fileName">File Name:</label>
+            <input type="text" id="fileName" value="vocabulary.xlsx" />
+        </div>
 
-        <label for="fileInput">Upload Existing Excel File:</label>
-        <input type="file" id="fileInput" accept=".xlsx" />
+        <div class="form-group">
+            <label for="sheetName">Sheet Name:</label>
+            <input type="text" id="sheetName" value="Vocabulary" />
+        </div>
+
+        <div class="form-group">
+            <label for="fileInput">Upload Existing Excel File:</label>
+            <input type="file" id="fileInput" accept=".xlsx" />
+        </div>
 
         <div class="checkbox-container">
-            <label for="appendOption">Append to Existing File:</label>
             <input type="checkbox" id="appendOption" />
+            <label for="appendOption">Append to Existing File</label>
         </div>
-        
-        <button id="exportButton">Export to Excel</button>
+
+        <button id="exportButton">
+            <span>Export to Excel</span>
+            <div class="loading">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" />
+                    <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z">
+                        <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s"
+                            repeatCount="indefinite" />
+                    </path>
+                </svg>
+            </div>
+        </button>
 
         <div class="info">
-            <p>Use the form above to export your vocabulary data to an Excel file.</p>
+            <p>Enter your vocabulary pairs with a separator between terms and definitions.</p>
+            <p>Example: word : definition</p>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
-    <script src="./assets//script/script.js"></script>
+    <script src="./assets/script/script.js"></script>
 </body>
+
 </html>
